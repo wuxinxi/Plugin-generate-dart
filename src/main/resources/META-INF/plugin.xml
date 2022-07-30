@@ -27,6 +27,9 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
 
+        <projectService serviceImplementation="cn.xxstudy.dart.generatewidget.service.StorageService"/>
+        <projectConfigurable parentId="tools" instance="cn.xxstudy.dart.generatewidget.settings.SettingsConfiguration"/>
+
     </extensions>
     <actions>
         <action id="GenerateWidget"

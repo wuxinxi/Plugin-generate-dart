@@ -1,8 +1,10 @@
 package cn.xxstudy.dart.generatewidget.generate;
 
+import cn.xxstudy.dart.generatewidget.service.StorageService;
 import cn.xxstudy.dart.generatewidget.utils.Utils;
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
+import com.intellij.openapi.project.Project;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.text.StrSubstitutor;
 
@@ -18,12 +20,14 @@ public class DartGenerator {
     private String templateString;
     private Map<String, String> templateMap = new HashMap<>();
 
-    public DartGenerator(String name, boolean createStateful) {
+
+    public DartGenerator(Project project,String name, boolean createStateful) {
         this.name = name;
         this.createStateful = createStateful;
         templateMap.put("className", className());
         templateMap.put("fileName", fileName());
         templateMap.put("date_time",Utils.createCurrentTime());
+        templateMap.put("user_name", StorageService.getInstance(project).getState().userName);
         init();
     }
 

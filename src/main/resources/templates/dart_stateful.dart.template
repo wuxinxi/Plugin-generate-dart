@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ///
 /// @date: ${date_time}
-/// @author: Sensi
+/// @author: ${user_name}
 /// @remark:
 ///
 

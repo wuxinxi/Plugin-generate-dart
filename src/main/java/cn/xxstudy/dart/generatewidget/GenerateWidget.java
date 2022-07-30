@@ -17,12 +17,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class GenerateWidget extends AnAction implements GenerateDartWidgetDialog.Listener {
     private DataContext dataContext;
+    private AnActionEvent anActionEvent;
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        boolean ok = new GenerateDartWidgetDialog(this).showAndGet();
-        if(ok){
+        if (anActionEvent == null) {
+            anActionEvent = e;
         }
+        new GenerateDartWidgetDialog(this).show();
     }
 
     @Override
@@ -33,7 +35,7 @@ public class GenerateWidget extends AnAction implements GenerateDartWidgetDialog
 
     @Override
     public void onGenerateClicked(String className, boolean createStateful) {
-        DartGenerator dartGenerator = new DartGenerator(className, createStateful);
+        DartGenerator dartGenerator = new DartGenerator(anActionEvent.getProject(), className, createStateful);
         generate(dartGenerator);
     }
 
